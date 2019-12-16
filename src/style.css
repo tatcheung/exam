@@ -1,0 +1,26 @@
+.nav {
+    padding: 20px;
+    font-size: 30px;
+}
+
+.post {
+    margin : 10px;
+    box-shadow: 0 2px 14px 0 #AAAAAA;
+    padding : 15px;
+    flex : 1;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.tags {
+    padding: 10px;
+}
