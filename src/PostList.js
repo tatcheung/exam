@@ -1,5 +1,6 @@
 import React from 'react';
 import Post from './Post';
+import PostDetail from './PostDetail';
 import './style.css';
 
 class PostList extends React.Component {
@@ -8,64 +9,73 @@ class PostList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            selectedPost : {
+                sections : []
+            },
             posts : []
         }
     }
 
-    // events
-    componentDidMount(){
 
+    componentDidMount(){
+        // get posts
         fetch(
-            "https://cdn.oneshop.cloud/lesson5_api_3.json",
+            "/api/articles",
             {
                 method : "GET"
             }
         )
+        // get response's data
         .then((response) => {
             return response.json();
         })
+        // assign data to state
         .then((data) => {
-            // set it to state
-            this.setState({posts : data});
+            // get posts
+            var posts = data.data.rows;
+            // update state
+            this.setState({
+                posts : posts
+            });
         })
+        // error?
         .catch((error) => {
-            console.log(error);
+            alert(error);
         });
-
     }
 
 
     // rendering
     render(){
         return (
-            <div>
-                <div className="nav">Posts</div>
-                <div className="post-list">
-                    {this.state.posts.map((a) => {
-                        /*
-                            {
-                                "title" : "orhgowrhg",
-                                "description" : "wrwrgg",
-                                "thumbnail" : "rwgwrgwgr"
-                            }
+            <div className="app-container">
+                <div className="wrapper">
 
-                            {
-                                "id": 3434,
-                                "content" : {
-                                    "title" : "orhgowrhg",
-                                    "description" : "wrwrgg",
-                                    "thumbnail" : "rwgwrgwgr"
-                                }
-                            }
-                        */
-                        return (
-                            <Post 
-                                title={a.post.content.title} 
-                                description={a.post.content.description}
-                                thumbnail={a.post.image.thumbnail}
-                            /> 
-                        );
-                    })}
+                    {/* --------- Post List ---------- */}
+                    <div className="left-column">
+                        <div className="nav">
+                            文章列表
+                        </div>
+                        <div className="post-list">
+                            {this.state.posts.map((a) => {
+                                return (
+                                    <Post key={a.id} post={a} onClick={() => {
+                                        // When post onClick, we set selectedPost as a
+                                        this.setState({ selectedPost : a });
+                                    }}/> 
+                                );
+                            })}
+                        </div>
+                    </div>
+                    {/* --------- /Post List ---------- */}
+
+                    {/* --------- Post Reading View ---------- */}
+                    <div className="right-column">
+                        {/*  Post Detail is a component displaying the selected Post */}
+                        <PostDetail post={this.state.selectedPost} />
+                    </div>
+                    {/* --------- /Post Reading View ---------- */}
+
                 </div>
             </div>
         );

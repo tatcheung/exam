@@ -1,26 +1,115 @@
+/* ------------- wrappers ------------ */
+.app-container{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
 .nav {
     padding: 20px;
     font-size: 30px;
 }
 
-.post {
-    margin : 10px;
-    box-shadow: 0 2px 14px 0 #AAAAAA;
-    padding : 15px;
+.wrapper {
+    display: flex;
     flex : 1;
+    overflow: auto;
 }
 
-.title {
-    font-size: 20px;
-    font-weight: 500;
+.left-column {
+    flex : 1;
+    border-right: 1px #AAAAAA solid;
+    overflow-y: scroll;
 }
 
+.right-column {
+    flex : 3;
+    overflow-y: scroll;
+}
+/* ------------- /wrappers ------------ */
+
+
+
+
+/* ------------- Left Column ------------ */
 .post-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
+.post {
+    display: flex;
+    flex : 1;
+    padding : 15px;
+    border-bottom: 1px #EFEFEF solid;
+    cursor: pointer;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post:hover{
+    background-color: #FAFAFA;
+}
+
+.post-title {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.post-time {
+    font-size: 11px;
+    color: #666;
+}
+
+
+.thumbnail {
+    height: 50px;
+    width: 50px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.info {
+    padding: 5px 0px;
+}
+
 .tags {
     padding: 10px;
 }
+/* ------------- /Left Column ------------ */
+
+
+
+
+/* ------------- Right Column ------------ */
+.post-detail-view {
+    display: flex;
+    flex:1;
+    flex-direction: column;
+}
+
+.section{
+    display: flex;
+    flex : 1;
+    padding: 15px;
+    flex-direction: column;
+}
+
+.section-image{
+    margin-bottom: 15px;
+    object-fit: contain;
+}
+
+.section-title{
+    margin-top : 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.section-description{
+    font-size: 17px;
+}
+
+/* ------------- /Right Column ------------ */
+
