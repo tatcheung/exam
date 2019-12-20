@@ -20,13 +20,12 @@ class PostDetail extends React.Component {
                 {/* -------------- Display post section by section -------------- */}
                 {
                     sections.map((s) => {
-
-                        var imageDetail = s.media[0];
+                        // get the url of the first image from this section
+                        var imageUrl = (s.media[0] || {}).url;
 
                         return (
                             <div key={s.title} className="section">
-                                <img src={imageDetail.url} className="section-image" alt="section thumbnail"/>
-                                <div className="section-title">{s.title}</div>
+                                <img src={imageUrl} className="imageUrl" alt="Section"/>
                                 <div className="section-description">{ReactHtmlParser(s.description)}</div>
                             </div>
                         );

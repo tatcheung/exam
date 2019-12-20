@@ -61,7 +61,10 @@ class PostList extends React.Component {
                                 return (
                                     <Post key={a.id} post={a} onClick={() => {
                                         // When post onClick, we set selectedPost as a
-                                        this.setState({ selectedPost : a });
+                                        this.setState(
+                                            {
+                                                selectedPost : a
+                                            })
                                     }}/> 
                                 );
                             })}
